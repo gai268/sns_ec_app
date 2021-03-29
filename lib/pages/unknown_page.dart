@@ -7,10 +7,8 @@ class UnknownPage extends StatelessWidget{
     return Scaffold(
       appBar: AppBar(  // ヘッダーに表示するアプリケーションバー
         title: Text(""),  // タイトルを表示
-        automaticallyImplyLeading: false, // 戻るボタン非表示
       ),
       body: SingleChildScrollView(
-        
         child: Container(
           height: 300,
           child: Center(child: Text("ページが見つかりません。")),

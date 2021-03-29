@@ -1,30 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:sns_ec_app/components/drawer_menu.dart';
 import 'package:sns_ec_app/components/footer.dart';
 
-class Home extends StatelessWidget{
+class SettingsPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // ヘッダー
       appBar: AppBar(  // ヘッダーに表示するアプリケーションバー
-        title: Text("ホーム"),  // タイトルを表示
+        title: Text("設定"),  // タイトルを表示
       ),
-
-      // 本文
       body: SingleChildScrollView(
         child: Container(
           height: 300,
-          child: Center(child: Text("作成中")),
+          child: Center(child: Text("準備中")),
         ),
       ),
-
-      // フッター
       bottomNavigationBar: Footer(),
-      
-      // ドロワーメニュー
-      drawer: DrawerMenu(),
-
     );
   }
 

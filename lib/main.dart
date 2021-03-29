@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sns_ec_app/pages/home.dart';
 import 'package:sns_ec_app/pages/mypage.dart';
 import 'package:sns_ec_app/pages/post_page.dart';
+import 'package:sns_ec_app/pages/settings_page.dart';
 import 'package:sns_ec_app/pages/unknown_page.dart';
 import 'modules/page_route_builder.dart/unanimated_page_route_builder.dart';
 
@@ -31,7 +32,8 @@ class MyApp extends StatelessWidget {
       ),
       home: Mypage(),
       routes: <String, WidgetBuilder> {
-        '/post': (BuildContext context) => PostPage()  // 投稿ページ
+        '/post': (BuildContext context) => PostPage(),  // 投稿ページ
+        '/settings': (BuildContext context) => SettingsPage(),  // 投稿ページ
       },
       onGenerateRoute: (RouteSettings settings){
         switch (settings.name) {

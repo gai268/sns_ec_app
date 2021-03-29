@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sns_ec_app/components/drawer_menu.dart';
 import 'package:sns_ec_app/components/footer.dart';
 import 'package:sns_ec_app/components/like_area.dart';
 import 'package:sns_ec_app/components/message_area.dart';
@@ -11,28 +12,29 @@ class Mypage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // ヘッダー
       appBar: AppBar(  // ヘッダーに表示するアプリケーションバー
         title: Text("マイページ"),  // タイトルを表示
-        automaticallyImplyLeading: false, // 戻るボタン非表示
       ),
+
+      // 本文
       body: DefaultTabController(
         length: _tabs.length, 
         child: NestedScrollView(
-          // タブバー
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
+              // プロフィールエリア
               SliverList(
                 delegate: SliverChildListDelegate([
                   MessageArea(),
                   LikeArea()
                 ])
               ),
+              // タブバー
               SliverPersistentHeader(
                 pinned: true,
                 delegate: StickyTabBarDelegate(
-                  tabBar: TabBar(
-                    tabs: _tabs.map((String name) => Tab(text: name)).toList(),
-                  ),
+                  tabBar: TabBar(tabs: _tabs.map((String name) => Tab(text: name)).toList()),
                   backgroundColor: Theme.of(context).canvasColor, // 背景色
                 ),
               ),
@@ -46,11 +48,14 @@ class Mypage extends StatelessWidget{
               SafeArea(child: PostsTab()),
             ]
           )
-        
         )
       ),
 
+      // フッター
       bottomNavigationBar: Footer(),
+
+      // ドロワーメニュー
+      drawer: DrawerMenu(),
     );
   }
 }
