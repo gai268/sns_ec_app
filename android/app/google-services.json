@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "42316977300",
+    "project_id": "sns-ec-app",
+    "storage_bucket": "sns-ec-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:42316977300:android:bd67214fd19ddc9f495081",
+        "android_client_info": {
+          "package_name": "com.example.sns_ec_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "42316977300-39o5dq71h76sa504s76n92qt53774366.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAgrG4IRcuj4-t-Ok9FcrdIMUrfnmWjFA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "42316977300-39o5dq71h76sa504s76n92qt53774366.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "42316977300-abh5ictpa09k7kkvgef9ll7kgeod5qft.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.snsEcApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
