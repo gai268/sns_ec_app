@@ -15,6 +15,15 @@ class DrawerMenu extends StatelessWidget{
               trailing: Icon(Icons.arrow_forward),
             ),
           ),
+
+          GestureDetector(
+            onTap: () => Navigator.of(context).pushNamed("/error"),
+            child: ListTile(
+              leading: Icon(Icons.settings),
+              title: Text("エラー画面"),
+              trailing: Icon(Icons.arrow_forward),
+            ),
+          ),
           
         ],
       ),

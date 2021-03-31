@@ -3,6 +3,7 @@ import 'package:sns_ec_app/components/drawer_menu.dart';
 import 'package:sns_ec_app/components/footer.dart';
 import 'package:sns_ec_app/components/like_area.dart';
 import 'package:sns_ec_app/components/message_area.dart';
+import 'package:sns_ec_app/components/user_info_area.dart';
 import 'package:sns_ec_app/modules/sticky_tab_bar_delegate.dart';
 import 'package:sns_ec_app/pages/tabs/posts_tab.dart';
 
@@ -11,6 +12,7 @@ class Mypage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       // ヘッダー
       appBar: AppBar(  // ヘッダーに表示するアプリケーションバー
@@ -26,6 +28,7 @@ class Mypage extends StatelessWidget{
               // プロフィールエリア
               SliverList(
                 delegate: SliverChildListDelegate([
+                  UserInfoArea(),
                   MessageArea(),
                   LikeArea()
                 ])
