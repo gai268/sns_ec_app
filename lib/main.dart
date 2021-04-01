@@ -21,27 +21,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      // Initialize FlutterFire:
-      future: _initialization,
-      builder: (context, snapshot) {
-        // Check for errors
-        if (snapshot.hasError) {
-          return _buildMaterialApp(context, ReadErrPage());
-        }
-
-        // Once complete, show your application
-        if (snapshot.connectionState == ConnectionState.done) {
-          return _buildMaterialApp(context, Mypage());
-        }
-
-        // Otherwise, show something whilst waiting for initialization to complete
-        return _buildMaterialApp(context, LoadingPage());
-      },
-    );
-  }
-
-  MaterialApp _buildMaterialApp(BuildContext context, Widget page){
     return MaterialApp(
         title: "SNS EC",
         theme: ThemeData(
@@ -56,7 +35,7 @@ class MyApp extends StatelessWidget {
                     borderSide: BorderSide(color: Colors.red)),
                 labelColor: Theme.of(context).textTheme.bodyText1.color)
         ),
-        home: page,
+        home: _buildHome(),
         routes: <String, WidgetBuilder>{
           '/post': (BuildContext context) => PostPage(), // 投稿ページ
           '/settings': (BuildContext context) => SettingsPage(), // 投稿ページ
@@ -75,5 +54,26 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => UnknownPage());
           }
         });
+  }
+
+  Widget _buildHome(){
+    return FutureBuilder(
+      // Initialize FlutterFire:
+      future: _initialization,
+      builder: (context, snapshot) {
+        // Check for errors
+        if (snapshot.hasError) {
+          return ReadErrPage();
+        }
+
+        // Once complete, show your application
+        if (snapshot.connectionState == ConnectionState.done) {
+          return Mypage();
+        }
+
+        // Otherwise, show something whilst waiting for initialization to complete
+        return LoadingPage();
+      },
+    );
   }
 }
