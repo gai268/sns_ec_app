@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:sns_ec_app/pages/errors/read_err_page.dart';
 import 'package:sns_ec_app/pages/home.dart';
 import 'package:sns_ec_app/pages/loading_page.dart';
+import 'package:sns_ec_app/pages/login_page.dart';
 import 'package:sns_ec_app/pages/mypage.dart';
 import 'package:sns_ec_app/pages/post_page.dart';
 import 'package:sns_ec_app/pages/settings_page.dart';
@@ -46,6 +47,9 @@ class MyApp extends StatelessWidget {
             // ホーム
             case "/home":
               return UnanimatedPageRouteBuilder(Home());
+            // ログインページ
+            case "/login":
+              return UnanimatedPageRouteBuilder(LoginPage());
             // マイページ
             case "/mypage":
               return UnanimatedPageRouteBuilder(Mypage());

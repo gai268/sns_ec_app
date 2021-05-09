@@ -25,6 +25,15 @@ class DrawerMenu extends StatelessWidget{
             ),
           ),
           
+          GestureDetector(
+            onTap: () => Navigator.of(context).pushNamed("/login"),
+            child: ListTile(
+              leading: Icon(Icons.settings),
+              title: Text("ログイン"),
+              trailing: Icon(Icons.arrow_forward),
+            ),
+          ),
+
         ],
       ),
     );
