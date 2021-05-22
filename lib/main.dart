@@ -7,15 +7,17 @@ import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:sns_ec_app/error_handler/global_error_handler.dart';
+import 'package:sns_ec_app/pages/auth/email_confirm_page.dart';
 
 import 'package:sns_ec_app/pages/errors/read_err_page.dart';
 import 'package:sns_ec_app/pages/home.dart';
 import 'package:sns_ec_app/pages/loading_page.dart';
-import 'package:sns_ec_app/pages/login_page.dart';
+import 'package:sns_ec_app/pages/auth/login_page.dart';
 import 'package:sns_ec_app/pages/mypage.dart';
 import 'package:sns_ec_app/pages/post_page.dart';
 import 'package:sns_ec_app/pages/settings_page.dart';
 import 'package:sns_ec_app/pages/errors/unknown_page.dart';
+import 'package:sns_ec_app/pages/auth/signup_page.dart';
 import 'modules/page_route_builder.dart/unanimated_page_route_builder.dart';
 
 GlobalErrorHandler globalErrorHandler = new GlobalErrorHandler();
@@ -56,6 +58,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primaryColor: Colors.red,
           accentColor: Colors.red,
+          elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(primary: Colors.red)),
           appBarTheme: AppBarTheme(
               backgroundColor: Theme.of(context).canvasColor,
               textTheme: Theme.of(context).textTheme,
@@ -67,14 +71,19 @@ class MyApp extends StatelessWidget {
       home: _buildHome(),
       routes: <String, WidgetBuilder>{
         '/post': (BuildContext context) => PostPage(), // 投稿ページ
-        '/settings': (BuildContext context) => SettingsPage(), // 投稿ページ
-        '/error': (BuildContext context) => ReadErrPage(), // 投稿ページ
+        '/settings': (BuildContext context) => SettingsPage(), // 設定ページ
+        '/error': (BuildContext context) => ReadErrPage(), // 読み込みエラーページ
+        '/email-confirm': (BuildContext context) =>
+            EmailConfirmPage(), // メールアドレス確認中ページ
       },
       onGenerateRoute: (RouteSettings settings) {
         switch (settings.name) {
           // ホーム
           case "/home":
             return UnanimatedPageRouteBuilder(Home());
+          // ユーザー登録ページ
+          case "/signup":
+            return UnanimatedPageRouteBuilder(SignupPage());
           // ログインページ
           case "/login":
             return UnanimatedPageRouteBuilder(LoginPage());

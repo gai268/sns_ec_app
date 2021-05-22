@@ -1,7 +1,6 @@
-
 import 'package:flutter/material.dart';
 
-class DrawerMenu extends StatelessWidget{
+class DrawerMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -15,7 +14,6 @@ class DrawerMenu extends StatelessWidget{
               trailing: Icon(Icons.arrow_forward),
             ),
           ),
-
           GestureDetector(
             onTap: () => Navigator.of(context).pushNamed("/error"),
             child: ListTile(
@@ -24,7 +22,22 @@ class DrawerMenu extends StatelessWidget{
               trailing: Icon(Icons.arrow_forward),
             ),
           ),
-          
+          GestureDetector(
+            onTap: () => Navigator.of(context).pushNamed("/signup"),
+            child: ListTile(
+              leading: Icon(Icons.settings),
+              title: Text("ユーザー登録"),
+              trailing: Icon(Icons.arrow_forward),
+            ),
+          ),
+          GestureDetector(
+            onTap: () => Navigator.of(context).pushNamed("/email-confirm"),
+            child: ListTile(
+              leading: Icon(Icons.settings),
+              title: Text("メール確認中"),
+              trailing: Icon(Icons.arrow_forward),
+            ),
+          ),
           GestureDetector(
             onTap: () => Navigator.of(context).pushNamed("/login"),
             child: ListTile(
@@ -33,10 +46,8 @@ class DrawerMenu extends StatelessWidget{
               trailing: Icon(Icons.arrow_forward),
             ),
           ),
-
         ],
       ),
     );
   }
-
 }
