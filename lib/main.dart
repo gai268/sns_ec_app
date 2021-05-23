@@ -71,6 +71,7 @@ class MyApp extends StatelessWidget {
       home: _buildHome(),
       routes: <String, WidgetBuilder>{
         '/post': (BuildContext context) => PostPage(), // 投稿ページ
+        '/signup': (BuildContext context) => SignupPage(), // ユーザー登録ページ
         '/settings': (BuildContext context) => SettingsPage(), // 設定ページ
         '/error': (BuildContext context) => ReadErrPage(), // 読み込みエラーページ
         '/email-confirm': (BuildContext context) =>
@@ -81,9 +82,6 @@ class MyApp extends StatelessWidget {
           // ホーム
           case "/home":
             return UnanimatedPageRouteBuilder(Home());
-          // ユーザー登録ページ
-          case "/signup":
-            return UnanimatedPageRouteBuilder(SignupPage());
           // ログインページ
           case "/login":
             return UnanimatedPageRouteBuilder(LoginPage());

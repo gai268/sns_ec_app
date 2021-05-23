@@ -18,6 +18,11 @@ class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // ヘッダー
+      appBar: AppBar(
+        title: Text("新規会員登録"),
+      ),
+
       body: Center(
         child: Container(
           padding: EdgeInsets.all(24),
@@ -28,8 +33,8 @@ class _SignupPageState extends State<SignupPage> {
               Center(
                 child: SvgPicture.asset(
                   'images/logo.svg',
-                  width: 150,
-                  height: 150,
+                  width: 50,
+                  height: 50,
                 ),
               ),
 

@@ -62,38 +62,30 @@ class _LoginPageState extends State<LoginPage> {
                 width: double.infinity,
                 // ユーザー登録ボタン
                 child: ElevatedButton(
-                  child: Text('登録'),
+                  child: Text('ログイン'),
                   onPressed: () async {
                     try {
-                      // メール/パスワードでユーザー登録
+                      // メール/パスワードで認証
                       final FirebaseAuth auth = FirebaseAuth.instance;
-                      await auth.createUserWithEmailAndPassword(
+                      await auth.signInWithEmailAndPassword(
                         email: email,
                         password: password,
                       );
-                      // ユーザー登録に成功した場合
+                      // ログインに成功した場合
                       // ホーム画面に遷移
                       await Navigator.of(context).pushNamed("/home");
                     } catch (e) {
                       switch (e.code) {
-                        case "email-already-in-use":
-                          setState(() {
-                            infoText = "既に使用されているメールアドレスです。";
-                          });
-                          break;
-                        case "missing-email":
-                          setState(() {
-                            infoText = "メールアドレスを入力してください。";
-                          });
-                          break;
                         case "invalid-email":
+                        case "user-not-found":
+                        case "wrong-password":
                           setState(() {
-                            infoText = "無効なメールアドレスです。";
+                            infoText = "メールアドレスまたはパスワードが間違っています。";
                           });
                           break;
-                        case "weak-password":
+                        case "user-disabled":
                           setState(() {
-                            infoText = "安全性が低いパスワードです。";
+                            infoText = "指定したユーザーのアカウントは凍結されています。";
                           });
                           break;
                         default:
@@ -105,7 +97,16 @@ class _LoginPageState extends State<LoginPage> {
                     }
                   },
                 ),
-              )
+              ),
+
+              Container(
+                  padding: EdgeInsets.all(8),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed("/signup");
+                    },
+                    child: const Text('新規会員登録'),
+                  )),
             ],
           ),
         ),
