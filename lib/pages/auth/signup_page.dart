@@ -52,12 +52,14 @@ class _SignupPageState extends State<SignupPage> {
                   });
                 },
               ),
+
               Container(
                 padding: EdgeInsets.all(8),
                 // メッセージ表示
                 child: Text(infoText,
                     style: TextStyle(color: Theme.of(context).errorColor)),
               ),
+
               Container(
                 width: double.infinity,
                 // ユーザー登録ボタン

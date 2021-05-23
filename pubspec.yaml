@@ -37,6 +37,7 @@ dependencies:
   english_words: ^3.1.5
   flutter_svg: ^0.22.0
   logging: ^1.0.1
+  firebase_dynamic_links: ^2.0.4
 
 
 dev_dependencies:
