@@ -76,9 +76,13 @@ class _LoginPageState extends State<LoginPage> {
                         password: password,
                       );
                       // ログインに成功した場合
+                      // 読み込みダイアログを閉じる
+                      Navigator.of(context).pop();
                       // ホーム画面に遷移
                       await Navigator.of(context).pushNamed("/home");
                     } catch (e) {
+                      // 読み込みダイアログを閉じる
+                      Navigator.of(context).pop();
                       switch (e.code) {
                         case "invalid-email":
                         case "user-not-found":
@@ -98,9 +102,6 @@ class _LoginPageState extends State<LoginPage> {
                           });
                           throw e;
                       }
-                    } finally {
-                      // 読み込みダイアログを閉じる
-                      Navigator.of(context).pop();
                     }
                   },
                 ),

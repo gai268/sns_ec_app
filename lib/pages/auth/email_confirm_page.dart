@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sns_ec_app/modules/loading_dialog.dart';
 
 // ユーザー登録時のメールアドレス確認中画面Widget
 class EmailConfirmPage extends StatefulWidget {
@@ -44,11 +45,17 @@ class _EmailConfirmPageState extends State<EmailConfirmPage> {
                   padding: EdgeInsets.all(8),
                   child: TextButton(
                     onPressed: () async {
+                      // 読み込みダイアログを開く
+                      LoadingDialog.show(context);
+                      
                       final FirebaseAuth auth = FirebaseAuth.instance;
                       // ユーザー情報を取得
                       User user = auth.currentUser;
                       // 確認メールを送信する。
-                      user.sendEmailVerification();
+                      await user.sendEmailVerification();
+
+                      // 読み込みダイアログを閉じる
+                      Navigator.of(context).pop();
                     },
                     child: const Text('> 確認メールを再送信する'),
                   )),
@@ -65,11 +72,17 @@ class _EmailConfirmPageState extends State<EmailConfirmPage> {
                 child: ElevatedButton(
                   child: Text('メールアドレスを確認しました。'),
                   onPressed: () async {
+                    // 読み込みダイアログを開く
+                    LoadingDialog.show(context);
+
                     final FirebaseAuth auth = FirebaseAuth.instance;
                     // ユーザー情報を取得
                     User user = auth.currentUser;
-                    user.reload();
+                    await user.reload();
 
+                    // 読み込みダイアログを閉じる
+                    Navigator.of(context).pop();
+                    
                     // メールアドレス認証済みの場合
                     if (user.emailVerified) {
                       await Navigator.of(context).pushNamed("/home");

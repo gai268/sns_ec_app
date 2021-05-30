@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sns_ec_app/modules/loading_dialog.dart';
 
 class DrawerMenu extends StatelessWidget {
   @override
@@ -48,9 +49,16 @@ class DrawerMenu extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () {
+            onTap: () async{
+              // 読み込みダイアログを開く
+              LoadingDialog.show(context);
+
               final FirebaseAuth auth = FirebaseAuth.instance;
-              auth.signOut();
+              await auth.signOut();
+
+              // 読み込みダイアログを閉じる
+              Navigator.of(context).pop();
+              // ログイン画面へ
               Navigator.of(context).pushNamed("/login");
             },
             child: ListTile(

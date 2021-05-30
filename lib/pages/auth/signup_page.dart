@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:sns_ec_app/modules/loading_dialog.dart';
 
 // ユーザー登録画面用Widget
 class SignupPage extends StatefulWidget {
@@ -72,6 +73,9 @@ class _SignupPageState extends State<SignupPage> {
                   child: Text('登録'),
                   onPressed: () async {
                     try {
+                      // 読み込みダイアログを開く
+                      LoadingDialog.show(context);
+                      
                       // メール/パスワードでユーザー登録
                       final FirebaseAuth auth = FirebaseAuth.instance;
                       final UserCredential result =
@@ -82,10 +86,14 @@ class _SignupPageState extends State<SignupPage> {
                       // ユーザー登録に成功した場合
                       User user = result.user;
                       // 確認メールを送信する。
-                      user.sendEmailVerification();
+                      await user.sendEmailVerification();
+                      // 読み込みダイアログを閉じる
+                      Navigator.of(context).pop();
                       // メールアドレス確認中画面に遷移
                       await Navigator.of(context).pushNamed("/email-confirm");
                     } catch (e) {
+                      // 読み込みダイアログを閉じる
+                      Navigator.of(context).pop();
                       switch (e.code) {
                         case "email-already-in-use":
                           setState(() {
