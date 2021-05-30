@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ import 'package:sns_ec_app/pages/post_page.dart';
 import 'package:sns_ec_app/pages/settings_page.dart';
 import 'package:sns_ec_app/pages/errors/unknown_page.dart';
 import 'package:sns_ec_app/pages/auth/signup_page.dart';
-import 'modules/page_route_builder.dart/unanimated_page_route_builder.dart';
+import 'modules/page_route_builder/unanimated_page_route_builder.dart';
 
 GlobalErrorHandler globalErrorHandler = new GlobalErrorHandler();
 
@@ -115,6 +116,11 @@ class MyApp extends StatelessWidget {
 
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
+          final FirebaseAuth auth = FirebaseAuth.instance;
+          // 未ログインの場合
+          if (auth.currentUser == null) {
+            return LoginPage();
+          }
           return Mypage();
         }
 

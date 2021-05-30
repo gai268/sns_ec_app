@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class DrawerMenu extends StatelessWidget {
@@ -43,6 +44,18 @@ class DrawerMenu extends StatelessWidget {
             child: ListTile(
               leading: Icon(Icons.settings),
               title: Text("ログイン"),
+              trailing: Icon(Icons.arrow_forward),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              final FirebaseAuth auth = FirebaseAuth.instance;
+              auth.signOut();
+              Navigator.of(context).pushNamed("/login");
+            },
+            child: ListTile(
+              leading: Icon(Icons.settings),
+              title: Text("ログアウト"),
               trailing: Icon(Icons.arrow_forward),
             ),
           ),

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:sns_ec_app/modules/loading_dialog.dart';
 
 // ログイン画面用Widget
 class LoginPage extends StatefulWidget {
@@ -60,11 +61,14 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Container(
                 width: double.infinity,
-                // ユーザー登録ボタン
+                // ログインボタン
                 child: ElevatedButton(
                   child: Text('ログイン'),
                   onPressed: () async {
                     try {
+                      // 読み込みダイアログを開く
+                      LoadingDialog.show(context);
+
                       // メール/パスワードで認証
                       final FirebaseAuth auth = FirebaseAuth.instance;
                       await auth.signInWithEmailAndPassword(
@@ -94,6 +98,9 @@ class _LoginPageState extends State<LoginPage> {
                           });
                           throw e;
                       }
+                    } finally {
+                      // 読み込みダイアログを閉じる
+                      Navigator.of(context).pop();
                     }
                   },
                 ),
